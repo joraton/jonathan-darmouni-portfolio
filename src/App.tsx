@@ -418,6 +418,8 @@ function Hero() {
     ["Contact", "#contact"],
   ];
 
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <section className="h-dvh bg-black md:p-6">
       <div className="relative h-full overflow-hidden bg-ink shadow-glow md:rounded-[2rem]">
@@ -428,7 +430,7 @@ function Hero() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_45%,rgba(143,232,210,0.20),transparent_36%)]" />
         <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_180px_60px_rgba(0,0,0,0.55)]" />
 
-        <nav className="absolute left-1/2 top-0 z-20 -translate-x-1/2 rounded-b-2xl border-x border-b border-white/[0.06] bg-black/85 px-5 py-2.5 backdrop-blur-md md:rounded-b-3xl md:px-9 md:py-3">
+        <nav className="absolute left-1/2 top-0 z-20 hidden -translate-x-1/2 rounded-b-2xl border-x border-b border-white/[0.06] bg-black/85 px-5 py-2.5 backdrop-blur-md md:block md:rounded-b-3xl md:px-9 md:py-3">
           <div className="flex items-center gap-4 sm:gap-6 md:gap-10">
             {navItems.map(([label, href]) => (
               <a
@@ -442,6 +444,52 @@ function Hero() {
             ))}
           </div>
         </nav>
+
+        <button
+          type="button"
+          onClick={() => setMenuOpen((open) => !open)}
+          aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+          aria-expanded={menuOpen}
+          className="absolute right-4 top-4 z-50 grid h-11 w-11 place-items-center rounded-full border border-white/[0.08] bg-black/70 backdrop-blur-md md:hidden"
+        >
+          <span className="relative block h-3.5 w-5">
+            <span
+              className={`absolute left-0 h-0.5 w-5 rounded-full bg-primary transition-all duration-300 ${
+                menuOpen ? "top-1/2 -translate-y-1/2 rotate-45" : "top-0"
+              }`}
+            />
+            <span
+              className={`absolute left-0 top-1/2 h-0.5 w-5 -translate-y-1/2 rounded-full bg-primary transition-opacity duration-200 ${
+                menuOpen ? "opacity-0" : "opacity-100"
+              }`}
+            />
+            <span
+              className={`absolute left-0 h-0.5 w-5 rounded-full bg-primary transition-all duration-300 ${
+                menuOpen ? "bottom-1/2 translate-y-1/2 -rotate-45" : "bottom-0"
+              }`}
+            />
+          </span>
+        </button>
+
+        <div
+          className={`fixed inset-0 z-40 flex flex-col items-center justify-center gap-3 bg-black/95 backdrop-blur-xl transition-opacity duration-300 md:hidden ${
+            menuOpen
+              ? "pointer-events-auto opacity-100"
+              : "pointer-events-none opacity-0"
+          }`}
+          aria-hidden={!menuOpen}
+        >
+          {navItems.map(([label, href]) => (
+            <a
+              key={label}
+              href={href}
+              onClick={() => setMenuOpen(false)}
+              className="px-8 py-3 text-3xl font-medium text-primary/80 transition-colors hover:text-[#E1E0CC]"
+            >
+              {label}
+            </a>
+          ))}
+        </div>
 
         <div className="absolute bottom-0 left-0 right-0 z-10 px-5 pb-6 sm:px-8 md:px-10 md:pb-8">
           <div className="mb-1.5 flex flex-wrap items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-primary/75 lg:mb-0 lg:translate-y-[5.7rem]">
