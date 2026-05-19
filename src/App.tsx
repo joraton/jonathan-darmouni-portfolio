@@ -445,7 +445,7 @@ function Hero() {
                 className="whitespace-nowrap text-[10px] transition-colors hover:text-[#E1E0CC] sm:text-xs md:text-sm"
                 style={{ color: "rgba(225, 224, 204, 0.75)" }}
               >
-                {label}
+                <span className="link-underline">{label}</span>
               </a>
             ))}
           </div>
@@ -579,7 +579,7 @@ function About() {
                 { text: "Je construis des outils qui parlent", className: "" },
                 {
                   text: "le langage du métier,",
-                  className: "font-light text-primary/60",
+                  className: "text-gradient-animated",
                 },
                 { text: "pas seulement celui de la tech.", className: "" },
               ]}
@@ -703,7 +703,7 @@ function Offer() {
               { text: "Une méthode simple :", className: "" },
               {
                 text: "audit, automation, interface.",
-                className: "text-primary/60",
+                className: "text-gradient-animated",
               },
             ]}
           />
@@ -920,7 +920,7 @@ function CaseStudies() {
           <Reveal y={20}>
             <h2 className="text-4xl leading-[1.02] text-[#E1E0CC] sm:text-5xl md:text-6xl">
               Des produits livrés,{" "}
-              <span className="font-light text-primary/55">
+              <span className="text-gradient-animated">
                 des workflows utiles,
               </span>{" "}
               des interfaces claires.
@@ -1026,10 +1026,10 @@ function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-primary/[0.12] bg-black">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
-      <div className="pointer-events-none absolute -top-32 left-1/2 h-64 w-[40rem] -translate-x-1/2 rounded-full bg-accent/[0.06] blur-3xl" />
+      <div className="pointer-events-none absolute -top-32 left-1/2 h-64 w-[90vw] max-w-[40rem] -translate-x-1/2 rounded-full bg-accent/[0.06] blur-3xl" />
 
-      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-20">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.15fr] lg:gap-10">
+      <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 md:py-20">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-12 lg:grid-cols-[1.5fr_1fr_1fr_1.15fr] lg:gap-10">
           <div>
             <a
               href="#profil"
@@ -1042,7 +1042,7 @@ function Footer() {
               Automatisations IA et webapps métier, simples à utiliser, pour
               PME et dirigeants.
             </p>
-            <span className="mt-6 inline-flex items-center gap-2 rounded-full border border-accent/25 bg-accent/[0.06] px-3 py-1.5 text-xs font-medium text-accent">
+            <span className="mt-6 inline-flex max-w-full items-center gap-2 rounded-full border border-accent/25 bg-accent/[0.06] px-3 py-1.5 text-xs font-medium text-accent">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent/70" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
@@ -1062,7 +1062,7 @@ function Footer() {
                     href={href}
                     className="text-sm text-primary/60 transition-colors duration-200 hover:text-[#E1E0CC]"
                   >
-                    {label}
+                    <span className="link-underline">{label}</span>
                   </a>
                 </li>
               ))}
@@ -1080,12 +1080,12 @@ function Footer() {
                     href={study.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="group inline-flex items-center gap-1.5 text-sm text-primary/60 transition-colors duration-200 hover:text-[#E1E0CC]"
+                    className="group inline-flex max-w-full items-center gap-1.5 text-sm text-primary/60 transition-colors duration-200 hover:text-[#E1E0CC]"
                   >
-                    {study.title}
+                    <span className="link-underline">{study.title}</span>
                     <ArrowUpRight
                       size={14}
-                      className="text-primary/35 transition-colors duration-200 group-hover:text-accent"
+                      className="shrink-0 text-primary/35 transition-colors duration-200 group-hover:text-accent"
                     />
                   </a>
                 </li>
@@ -1101,19 +1101,19 @@ function Footer() {
               <li>
                 <a
                   href={`mailto:${email}`}
-                  className="inline-flex items-center gap-2.5 text-primary/60 transition-colors duration-200 hover:text-[#E1E0CC]"
+                  className="inline-flex max-w-full min-w-0 items-start gap-2.5 text-primary/60 transition-colors duration-200 hover:text-[#E1E0CC]"
                 >
-                  <Mail size={15} className="shrink-0 text-accent" />
-                  {email}
+                  <Mail size={15} className="mt-0.5 shrink-0 text-accent" />
+                  <span className="link-underline break-all">{email}</span>
                 </a>
               </li>
               <li>
                 <a
                   href={`tel:${phone.replace(/\s/g, "")}`}
-                  className="inline-flex items-center gap-2.5 text-primary/60 transition-colors duration-200 hover:text-[#E1E0CC]"
+                  className="inline-flex max-w-full min-w-0 items-center gap-2.5 text-primary/60 transition-colors duration-200 hover:text-[#E1E0CC]"
                 >
                   <Phone size={15} className="shrink-0 text-accent" />
-                  {phone}
+                  <span className="link-underline">{phone}</span>
                 </a>
               </li>
               <li className="pt-2">
