@@ -380,17 +380,19 @@ function CTAButton({
   href,
   children,
   variant = "primary",
+  className = "",
 }: {
   href: string;
   children: React.ReactNode;
   variant?: "primary" | "ghost";
+  className?: string;
 }) {
   const isPrimary = variant === "primary";
 
   return (
     <a
       href={href}
-      className={`group inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-5 text-sm font-bold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black sm:text-base ${
+      className={`group inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-5 text-sm font-bold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black sm:text-base ${className} ${
         isPrimary
           ? "bg-primary text-black shadow-[0_10px_30px_-12px_rgba(222,219,200,0.5)] hover:gap-4 hover:shadow-[0_14px_40px_-12px_rgba(143,232,210,0.45)]"
           : "border border-primary/25 bg-black/20 text-primary backdrop-blur hover:border-primary/50 hover:bg-primary/[0.14]"
@@ -450,7 +452,7 @@ function Hero() {
             <span>PME et dirigeants</span>
           </div>
 
-          <div className="grid items-end gap-6 lg:grid-cols-12">
+          <div className="grid items-end gap-3 lg:grid-cols-12 lg:gap-6">
             <div className="lg:col-span-7 xl:col-span-8">
               <h1
                 className="text-[11vw] font-medium leading-[0.83] text-[#E1E0CC] sm:text-[10vw] md:text-[9vw] lg:text-[7.6vw] xl:text-[7vw]"
@@ -475,10 +477,14 @@ function Hero() {
                 initial={{ y: 12, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.9, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                className="mt-6 flex flex-wrap gap-3"
+                className="mt-4 flex flex-wrap gap-3 lg:mt-6"
               >
                 <CTAButton href={calendarUrl}>Prendre un appel</CTAButton>
-                <CTAButton href="#realisations" variant="ghost">
+                <CTAButton
+                  href="#realisations"
+                  variant="ghost"
+                  className="hidden sm:inline-flex"
+                >
                   Voir les réalisations
                 </CTAButton>
               </motion.div>
