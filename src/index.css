@@ -104,13 +104,16 @@ button:focus-visible,
 }
 
 .text-gradient-animated {
+  display: inline-block;
+  padding-bottom: 0.22em;
+  margin-bottom: -0.22em;
   background-image: linear-gradient(
     90deg,
+    #b4f2e4,
     #8fe8d2,
-    #e6fbf4,
-    #5fd9bd,
-    #e6fbf4,
-    #8fe8d2
+    #3cb89e,
+    #8fe8d2,
+    #b4f2e4
   );
   background-size: 200% auto;
   -webkit-background-clip: text;

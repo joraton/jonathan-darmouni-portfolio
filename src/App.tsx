@@ -335,7 +335,7 @@ function WordsPullUpMultiStyle({
       {words.map(({ word, className: wordClassName }, index) => (
         <span
           key={`${word}-${index}`}
-          className="overflow-hidden pb-[0.2em] -mb-[0.2em] pr-[0.22em]"
+          className="overflow-hidden pb-[0.35em] -mb-[0.35em] pr-[0.22em]"
         >
           <motion.span
             className={`inline-block ${wordClassName ?? ""}`}
