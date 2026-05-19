@@ -669,17 +669,76 @@ function Offer() {
   );
 }
 
+function useRevealOnce<T extends HTMLElement>() {
+  const ref = useRef<T>(null);
+  const [shown, setShown] = useState(false);
+
+  useEffect(() => {
+    if (shown) return;
+    const node = ref.current;
+    if (!node) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setShown(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setShown(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -12% 0px", threshold: 0.1 },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [shown]);
+
+  return { ref, shown };
+}
+
+function Reveal({
+  children,
+  className = "",
+  delay = 0,
+  y = 28,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+  y?: number;
+}) {
+  const reduce = useReducedMotion();
+  const { ref, shown } = useRevealOnce<HTMLDivElement>();
+  const visible = reduce || shown;
+
+  return (
+    <div
+      ref={ref}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "none" : `translateY(${y}px)`,
+        transition: reduce
+          ? undefined
+          : `opacity 700ms cubic-bezier(0.22,1,0.36,1) ${delay}ms, transform 700ms cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
+        willChange: "opacity, transform",
+      }}
+      className={className}
+    >
+      {children}
+    </div>
+  );
+}
+
 function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
   const isFeatured = index === 0;
 
   if (isFeatured) {
     return (
-      <motion.article
-        initial={{ opacity: 0, y: 28 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-60px" }}
-        transition={{ duration: 0.7, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-        className="group col-span-1 flex flex-col rounded-2xl border border-primary/[0.14] bg-gradient-to-b from-[#1b1b1b] to-[#121212] p-6 shadow-[0_1px_0_rgba(255,255,255,0.04)_inset] transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.9)] md:col-span-2"
+      <Reveal delay={index * 100} className="md:col-span-2">
+      <article
+        className="group flex h-full flex-col rounded-2xl border border-primary/[0.14] bg-gradient-to-b from-[#1b1b1b] to-[#121212] p-6 shadow-[0_1px_0_rgba(255,255,255,0.04)_inset] transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.9)]"
       >
         <div className="flex items-start justify-between gap-4">
           <div>
@@ -730,17 +789,15 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
             ))}
           </div>
         </div>
-      </motion.article>
+      </article>
+      </Reveal>
     );
   }
 
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.7, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-      className="group flex flex-col rounded-2xl border border-primary/[0.14] bg-gradient-to-b from-[#191919] to-[#121212] p-5 shadow-[0_1px_0_rgba(255,255,255,0.04)_inset] transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.9)]"
+    <Reveal delay={index * 100}>
+    <article
+      className="group flex h-full flex-col rounded-2xl border border-primary/[0.14] bg-gradient-to-b from-[#191919] to-[#121212] p-5 shadow-[0_1px_0_rgba(255,255,255,0.04)_inset] transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.9)]"
     >
       <div className="flex items-start justify-between gap-4">
         <span className="text-xs font-bold uppercase tracking-[0.22em] text-accent">
@@ -782,7 +839,8 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
           </span>
         ))}
       </div>
-    </motion.article>
+    </article>
+    </Reveal>
   );
 }
 
@@ -790,43 +848,29 @@ function CaseStudies() {
   return (
     <section id="realisations" className="bg-black px-4 py-20 sm:px-6 md:py-32">
       <div className="mx-auto max-w-7xl">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.55 }}
-          className="mb-14 flex items-center gap-4 md:mb-16"
-        >
+        <Reveal y={10} className="mb-14 flex items-center gap-4 md:mb-16">
           <span className="h-px w-10 bg-accent/70" />
           <span className="text-xs font-bold uppercase tracking-[0.26em] text-accent">
             Réalisations
           </span>
-        </motion.div>
+        </Reveal>
 
         <div className="mb-12 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-20 md:mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="text-4xl leading-[1.02] text-[#E1E0CC] sm:text-5xl md:text-6xl"
-          >
-            Des produits livrés,{" "}
-            <span className="font-light text-primary/55">
-              des workflows utiles,
-            </span>{" "}
-            des interfaces claires.
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="text-sm leading-relaxed text-primary/75 md:text-base"
-          >
-            Chaque projet sert le même objectif : retirer de la friction
-            opérationnelle et rendre la technologie facile à utiliser.
-          </motion.p>
+          <Reveal y={20}>
+            <h2 className="text-4xl leading-[1.02] text-[#E1E0CC] sm:text-5xl md:text-6xl">
+              Des produits livrés,{" "}
+              <span className="font-light text-primary/55">
+                des workflows utiles,
+              </span>{" "}
+              des interfaces claires.
+            </h2>
+          </Reveal>
+          <Reveal y={14} delay={150}>
+            <p className="text-sm leading-relaxed text-primary/75 md:text-base">
+              Chaque projet sert le même objectif : retirer de la friction
+              opérationnelle et rendre la technologie facile à utiliser.
+            </p>
+          </Reveal>
         </div>
 
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
