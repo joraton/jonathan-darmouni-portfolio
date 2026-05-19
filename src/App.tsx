@@ -22,7 +22,9 @@ import { useEffect, useMemo, useRef, useState } from "react";
 const heroVideoUrl =
   "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_170732_8a9ccda6-5cff-4628-b164-059c500a2b41.mp4";
 
-const calendarUrl = "https://calendly.com/";
+const calendarUrl = "https://calendar.app.google/gSMzxnWCdT8Ndj2BA";
+const email = "jonathan.darmouni@gmail.com";
+const phone = "06 52 98 01 91";
 
 function SmoothLoopVideo({ src }: { src: string }) {
   const firstRef = useRef<HTMLVideoElement>(null);
@@ -1031,6 +1033,20 @@ function Footer() {
             </a>
           ))}
         </nav>
+        <div className="flex flex-col gap-2 text-xs text-primary/55 sm:items-end">
+          <a
+            href={`mailto:${email}`}
+            className="transition-colors duration-200 hover:text-primary/75"
+          >
+            {email}
+          </a>
+          <a
+            href={`tel:${phone.replace(/\s/g, "")}`}
+            className="transition-colors duration-200 hover:text-primary/75"
+          >
+            {phone}
+          </a>
+        </div>
       </div>
     </footer>
   );
