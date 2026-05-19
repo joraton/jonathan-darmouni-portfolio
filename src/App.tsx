@@ -417,7 +417,7 @@ function Hero() {
   ];
 
   return (
-    <section className="h-screen bg-black p-4 md:p-6">
+    <section className="h-dvh bg-black p-4 md:p-6">
       <div className="relative h-full overflow-hidden rounded-2xl bg-ink shadow-glow md:rounded-[2rem]">
         <SmoothLoopVideo src={heroVideoUrl} />
         <div className="noise-overlay pointer-events-none absolute inset-0 opacity-[0.7] mix-blend-overlay" />
