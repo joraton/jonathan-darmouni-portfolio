@@ -564,7 +564,7 @@ function About() {
           </span>
         </motion.div>
 
-        <div className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-24 lg:items-start">
+        <div className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-24 lg:items-center">
           <div>
             <WordsPullUpMultiStyle
               justify="start"
@@ -610,12 +610,17 @@ function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.8, delay: 0.18 }}
-            className="flex flex-col gap-5 lg:pt-2"
+            className="flex flex-col gap-5"
           >
             <p className="text-base leading-relaxed text-primary/75">
               Mon avantage, c'est la combinaison : une formation DSCG pour
               comprendre vos enjeux de gestion, et les compétences techniques
               pour automatiser de A à Z : workflows, agents IA, webapps métier.
+            </p>
+            <p className="text-base leading-relaxed text-primary/75">
+              Je ne vends pas des automatisations IA compliquées, mais de vraies
+              solutions concrètes et faciles à prendre en main par vos équipes
+              métier, avec une interface aux couleurs de votre entreprise.
             </p>
             <p className="text-base leading-relaxed text-primary/75">
               Je comprends vos process avant de les toucher. Le résultat : des
