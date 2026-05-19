@@ -8,11 +8,15 @@ import {
 } from "framer-motion";
 import {
   ArrowRight,
+  ArrowUp,
+  ArrowUpRight,
   Bot,
   Check,
   ExternalLink,
   Gauge,
   Layers3,
+  Mail,
+  Phone,
   Play,
   Sparkles,
   Workflow,
@@ -1016,36 +1020,136 @@ function Footer() {
     ["Contact", "#contact"],
   ];
 
+  const projects = caseStudies.filter((study) => study.href);
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="border-t border-primary/[0.12] bg-black px-4 py-8 sm:px-6">
-      <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-5 sm:flex-row sm:items-center">
-        <span className="text-xs text-primary/55">
-          © {new Date().getFullYear()} Jonathan Darmouni
-        </span>
-        <nav className="flex flex-wrap gap-x-7 gap-y-2" aria-label="Navigation bas de page">
-          {navItems.map(([label, href]) => (
+    <footer className="relative overflow-hidden border-t border-primary/[0.12] bg-black">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
+      <div className="pointer-events-none absolute -top-32 left-1/2 h-64 w-[40rem] -translate-x-1/2 rounded-full bg-accent/[0.06] blur-3xl" />
+
+      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-20">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.15fr] lg:gap-10">
+          <div>
             <a
-              key={label}
-              href={href}
-              className="text-xs text-primary/55 transition-colors duration-200 hover:text-primary/75"
+              href="#profil"
+              className="inline-flex items-baseline gap-1 text-2xl font-medium text-[#E1E0CC] transition-colors hover:text-white sm:text-3xl"
             >
-              {label}
+              Jonathan Darmouni
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
             </a>
-          ))}
-        </nav>
-        <div className="flex flex-col gap-2 text-xs text-primary/55 sm:items-end">
-          <a
-            href={`mailto:${email}`}
-            className="transition-colors duration-200 hover:text-primary/75"
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-primary/60">
+              Automatisations IA et webapps métier, simples à utiliser, pour
+              PME et dirigeants.
+            </p>
+            <span className="mt-6 inline-flex items-center gap-2 rounded-full border border-accent/25 bg-accent/[0.06] px-3 py-1.5 text-xs font-medium text-accent">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent/70" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+              </span>
+              Disponible pour de nouveaux projets
+            </span>
+          </div>
+
+          <nav aria-label="Navigation bas de page">
+            <p className="mb-5 text-[11px] font-bold uppercase tracking-[0.24em] text-primary/45">
+              Navigation
+            </p>
+            <ul className="flex flex-col gap-3">
+              {navItems.map(([label, href]) => (
+                <li key={label}>
+                  <a
+                    href={href}
+                    className="text-sm text-primary/60 transition-colors duration-200 hover:text-[#E1E0CC]"
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div>
+            <p className="mb-5 text-[11px] font-bold uppercase tracking-[0.24em] text-primary/45">
+              Projets
+            </p>
+            <ul className="flex flex-col gap-3">
+              {projects.map((study) => (
+                <li key={study.title}>
+                  <a
+                    href={study.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group inline-flex items-center gap-1.5 text-sm text-primary/60 transition-colors duration-200 hover:text-[#E1E0CC]"
+                  >
+                    {study.title}
+                    <ArrowUpRight
+                      size={14}
+                      className="text-primary/35 transition-colors duration-200 group-hover:text-accent"
+                    />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <p className="mb-5 text-[11px] font-bold uppercase tracking-[0.24em] text-primary/45">
+              Contact
+            </p>
+            <ul className="flex flex-col gap-3 text-sm">
+              <li>
+                <a
+                  href={`mailto:${email}`}
+                  className="inline-flex items-center gap-2.5 text-primary/60 transition-colors duration-200 hover:text-[#E1E0CC]"
+                >
+                  <Mail size={15} className="shrink-0 text-accent" />
+                  {email}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`tel:${phone.replace(/\s/g, "")}`}
+                  className="inline-flex items-center gap-2.5 text-primary/60 transition-colors duration-200 hover:text-[#E1E0CC]"
+                >
+                  <Phone size={15} className="shrink-0 text-accent" />
+                  {phone}
+                </a>
+              </li>
+              <li className="pt-2">
+                <a
+                  href={calendarUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/[0.04] px-4 py-2 text-sm font-medium text-primary transition-all duration-300 hover:border-primary/50 hover:bg-primary/[0.1]"
+                >
+                  Prendre un appel
+                  <ArrowUpRight
+                    size={15}
+                    className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  />
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-14 flex flex-col gap-4 border-t border-primary/[0.1] pt-7 text-xs text-primary/45 sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            © {year} Jonathan Darmouni — Conçu et développé sur mesure.
+          </p>
+          <button
+            type="button"
+            onClick={() =>
+              window.scrollTo({ top: 0, behavior: "smooth" })
+            }
+            className="group inline-flex items-center gap-2 self-start text-primary/55 transition-colors duration-200 hover:text-[#E1E0CC] sm:self-auto"
           >
-            {email}
-          </a>
-          <a
-            href={`tel:${phone.replace(/\s/g, "")}`}
-            className="transition-colors duration-200 hover:text-primary/75"
-          >
-            {phone}
-          </a>
+            Retour en haut
+            <span className="grid h-7 w-7 place-items-center rounded-full border border-primary/20 transition-all duration-300 group-hover:border-accent/50 group-hover:bg-accent/10">
+              <ArrowUp size={13} />
+            </span>
+          </button>
         </div>
       </div>
     </footer>
