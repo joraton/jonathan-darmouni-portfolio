@@ -421,7 +421,7 @@ function Hero() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <section className="h-dvh bg-black md:p-6">
+    <section className="h-svh bg-black md:p-6">
       <div className="relative h-full overflow-hidden bg-ink shadow-glow md:rounded-[2rem]">
         <SmoothLoopVideo src={heroVideoUrl} />
         <div className="noise-overlay pointer-events-none absolute inset-0 opacity-[0.7] mix-blend-overlay" />
