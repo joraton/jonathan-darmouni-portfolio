@@ -450,7 +450,7 @@ function Hero() {
           onClick={() => setMenuOpen((open) => !open)}
           aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
           aria-expanded={menuOpen}
-          className="absolute right-4 top-4 z-50 grid h-11 w-11 place-items-center rounded-full border border-white/[0.08] bg-black/70 backdrop-blur-md md:hidden"
+          className="fixed right-4 top-4 z-50 grid h-11 w-11 place-items-center rounded-full border border-white/[0.08] bg-black/70 backdrop-blur-md md:hidden"
         >
           <span className="relative block h-3.5 w-5">
             <span
@@ -506,7 +506,7 @@ function Hero() {
                 className="text-[11vw] font-medium leading-[0.83] text-[#E1E0CC] sm:text-[10vw] md:text-[9vw] lg:text-[7.6vw] xl:text-[7vw]"
                 aria-label="Jonathan Darmouni"
               >
-                <WordsPullUp text="Jonathan Darmouni" showAsterisk stable />
+                <WordsPullUp text="Jonathan Darmouni" stable />
               </h1>
             </div>
 
