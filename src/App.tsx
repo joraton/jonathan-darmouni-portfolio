@@ -491,52 +491,48 @@ function Hero() {
           ))}
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 z-10 px-5 pb-6 sm:px-8 md:px-10 md:pb-8">
-          <div className="mb-1.5 flex flex-wrap items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-primary/75 lg:mb-0 lg:translate-y-[5.7rem]">
-            <span>DSCG</span>
-            <span className="h-1 w-1 rounded-full bg-accent" />
-            <span>Automatisations IA · Webapps métier</span>
-            <span className="h-1 w-1 rounded-full bg-accent" />
-            <span>PME et dirigeants</span>
-          </div>
-
-          <div className="grid items-end gap-3 lg:grid-cols-12 lg:gap-6">
-            <div className="lg:col-span-7 xl:col-span-8">
-              <h1
-                className="text-[11vw] font-medium leading-[0.83] text-[#E1E0CC] sm:text-[10vw] md:text-[9vw] lg:text-[7.6vw] xl:text-[7vw]"
-                aria-label="Jonathan Darmouni"
-              >
-                <WordsPullUp text="Jonathan Darmouni" stable />
-              </h1>
+        <div className="absolute bottom-0 left-0 right-0 z-10 px-5 pb-6 sm:px-8 sm:pb-9 md:px-10 md:pb-12 lg:pb-14">
+          <div className="max-w-4xl">
+            <div className="mb-3 flex flex-wrap items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-primary/75 sm:mb-4 md:mb-5">
+              <span>DSCG</span>
+              <span className="h-1 w-1 rounded-full bg-accent" />
+              <span>Automatisations IA · Webapps métier</span>
+              <span className="h-1 w-1 rounded-full bg-accent" />
+              <span>PME et dirigeants</span>
             </div>
 
-            <div className="max-w-xl lg:col-span-5 xl:col-span-4">
-              <motion.p
-                initial={{ y: 16, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.9, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="max-w-[20rem] text-balance text-sm leading-tight text-primary/80 sm:max-w-xl sm:text-lg md:text-xl"
-              >
-                J'automatise vos process métier avec des webapps IA simples à
-                utiliser.
-              </motion.p>
+            <h1
+              className="text-[11vw] font-medium leading-[0.83] text-[#E1E0CC] sm:text-[10vw] md:text-[9vw] lg:text-[7.6vw] xl:text-[7vw]"
+              aria-label="Jonathan Darmouni"
+            >
+              <WordsPullUp text="Jonathan Darmouni" stable />
+            </h1>
 
-              <motion.div
-                initial={{ y: 12, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.9, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                className="mt-4 flex flex-wrap gap-3 lg:mt-6"
+            <motion.p
+              initial={{ y: 16, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.9, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-4 max-w-xl text-balance text-sm leading-tight text-primary/80 sm:mt-5 sm:text-lg md:mt-6 md:text-xl"
+            >
+              J'automatise vos process métier avec des webapps IA simples à
+              utiliser.
+            </motion.p>
+
+            <motion.div
+              initial={{ y: 12, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.9, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-5 flex flex-wrap gap-3 sm:mt-6"
+            >
+              <CTAButton href={calendarUrl}>Prendre un appel</CTAButton>
+              <CTAButton
+                href="#realisations"
+                variant="ghost"
+                className="hidden sm:inline-flex"
               >
-                <CTAButton href={calendarUrl}>Prendre un appel</CTAButton>
-                <CTAButton
-                  href="#realisations"
-                  variant="ghost"
-                  className="hidden sm:inline-flex"
-                >
-                  Voir les réalisations
-                </CTAButton>
-              </motion.div>
-            </div>
+                Voir les réalisations
+              </CTAButton>
+            </motion.div>
           </div>
         </div>
       </div>
