@@ -669,29 +669,12 @@ function Offer() {
   );
 }
 
-const caseGridVariants = {
-  hidden: {},
-  show: {
-    transition: { staggerChildren: 0.08, delayChildren: 0.04 },
-  },
-};
-
-const caseCardVariants = {
-  hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
-  },
-};
-
 function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
   const isFeatured = index === 0;
 
   if (isFeatured) {
     return (
-      <motion.article
-        variants={caseCardVariants}
+      <article
         className="group col-span-1 flex flex-col rounded-2xl border border-primary/[0.14] bg-gradient-to-b from-[#1b1b1b] to-[#121212] p-6 shadow-[0_1px_0_rgba(255,255,255,0.04)_inset] transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.9)] md:col-span-2"
       >
         <div className="flex items-start justify-between gap-4">
@@ -743,13 +726,12 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
             ))}
           </div>
         </div>
-      </motion.article>
+      </article>
     );
   }
 
   return (
-    <motion.article
-      variants={caseCardVariants}
+    <article
       className="group flex flex-col rounded-2xl border border-primary/[0.14] bg-gradient-to-b from-[#191919] to-[#121212] p-5 shadow-[0_1px_0_rgba(255,255,255,0.04)_inset] transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.9)]"
     >
       <div className="flex items-start justify-between gap-4">
@@ -792,7 +774,7 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
           </span>
         ))}
       </div>
-    </motion.article>
+    </article>
   );
 }
 
@@ -800,56 +782,32 @@ function CaseStudies() {
   return (
     <section id="realisations" className="bg-black px-4 py-20 sm:px-6 md:py-32">
       <div className="mx-auto max-w-7xl">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.55 }}
-          className="mb-14 flex items-center gap-4 md:mb-16"
-        >
+        <div className="mb-14 flex items-center gap-4 md:mb-16">
           <span className="h-px w-10 bg-accent/70" />
           <span className="text-xs font-bold uppercase tracking-[0.26em] text-accent">
             Réalisations
           </span>
-        </motion.div>
+        </div>
 
         <div className="mb-12 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-20 md:mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl leading-[1.02] text-[#E1E0CC] sm:text-5xl md:text-6xl"
-          >
+          <h2 className="text-4xl leading-[1.02] text-[#E1E0CC] sm:text-5xl md:text-6xl">
             Des produits livrés,{" "}
             <span className="font-light text-primary/55">
               des workflows utiles,
             </span>{" "}
             des interfaces claires.
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="text-sm leading-relaxed text-primary/75 md:text-base"
-          >
+          </h2>
+          <p className="text-sm leading-relaxed text-primary/75 md:text-base">
             Chaque projet sert le même objectif : retirer de la friction
             opérationnelle et rendre la technologie facile à utiliser.
-          </motion.p>
+          </p>
         </div>
 
-        <motion.div
-          variants={caseGridVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.15 }}
-          className="grid gap-3 md:grid-cols-2 xl:grid-cols-3"
-        >
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
           {caseStudies.map((study, index) => (
             <CaseStudyCard key={study.title} study={study} index={index} />
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
