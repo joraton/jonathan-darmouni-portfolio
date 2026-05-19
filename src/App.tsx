@@ -605,7 +605,7 @@ function OfferStep({
         )}
       </div>
 
-      <span className="mt-7 block select-none text-[3.5rem] font-bold leading-none text-primary/[0.06] tabular-nums">
+      <span className="mt-7 block select-none text-[3.5rem] font-bold leading-none text-primary/[0.22] tabular-nums">
         {step.eyebrow}
       </span>
 
