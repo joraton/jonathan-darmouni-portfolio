@@ -669,16 +669,29 @@ function Offer() {
   );
 }
 
+const caseGridVariants = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.08, delayChildren: 0.04 },
+  },
+};
+
+const caseCardVariants = {
+  hidden: { opacity: 0, y: 24 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};
+
 function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
   const isFeatured = index === 0;
 
   if (isFeatured) {
     return (
       <motion.article
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+        variants={caseCardVariants}
         className="group col-span-1 flex flex-col rounded-2xl border border-primary/[0.14] bg-gradient-to-b from-[#1b1b1b] to-[#121212] p-6 shadow-[0_1px_0_rgba(255,255,255,0.04)_inset] transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.9)] md:col-span-2"
       >
         <div className="flex items-start justify-between gap-4">
@@ -736,14 +749,7 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{
-        duration: 0.75,
-        delay: (index - 1) * 0.07,
-        ease: [0.22, 1, 0.36, 1],
-      }}
+      variants={caseCardVariants}
       className="group flex flex-col rounded-2xl border border-primary/[0.14] bg-gradient-to-b from-[#191919] to-[#121212] p-5 shadow-[0_1px_0_rgba(255,255,255,0.04)_inset] transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.9)]"
     >
       <div className="flex items-start justify-between gap-4">
@@ -833,11 +839,17 @@ function CaseStudies() {
           </motion.p>
         </div>
 
-        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+        <motion.div
+          variants={caseGridVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.15 }}
+          className="grid gap-3 md:grid-cols-2 xl:grid-cols-3"
+        >
           {caseStudies.map((study, index) => (
             <CaseStudyCard key={study.title} study={study} index={index} />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
