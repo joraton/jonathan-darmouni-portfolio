@@ -419,8 +419,8 @@ function CTAButton({
 function Hero() {
   const navItems = [
     ["Profil", "#profil"],
-    ["Méthode", "#methode"],
     ["Réalisations", "#realisations"],
+    ["Méthode", "#methode"],
     ["Contact", "#contact"],
   ];
 
@@ -1015,8 +1015,8 @@ function Contact() {
 function Footer() {
   const navItems: [string, string][] = [
     ["Profil", "#profil"],
-    ["Méthode", "#methode"],
     ["Réalisations", "#realisations"],
+    ["Méthode", "#methode"],
     ["Contact", "#contact"],
   ];
 
@@ -1162,8 +1162,8 @@ function App() {
       <main className="min-h-screen bg-black">
         <Hero />
         <About />
-        <Offer />
         <CaseStudies />
+        <Offer />
         <Contact />
         <Footer />
       </main>
